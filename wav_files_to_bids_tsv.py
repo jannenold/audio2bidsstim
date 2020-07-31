@@ -84,7 +84,7 @@ if __name__ == '__main__':
             tsv_file = os.path.join(args.output, tsv_file)
             json_file = os.path.join(args.output, json_file)
         np.savetxt(tsv_file, melspec, delimiter='\t')
-        metadata = {'SamplingFrequency': sr_spec, 'StartingTime': start_time,
+        metadata = {'SamplingFrequency': sr_spec, 'StartTime': start_time,
                     'Columns': freqs}
         with open(json_file, 'w+') as fp:
             json.dump(metadata, fp)
