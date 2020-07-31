@@ -57,7 +57,7 @@ if __name__ == '__main__':
     from itertools import cycle
     parser = argparse.ArgumentParser(description='Wav2bids stim converter.')
     parser.add_argument('file', help='Name of file or space separated list of files or glob expression for wav files to be converted.', nargs='+')
-    parser.add_argument('-c' ,'--config', help='Path to json file that contains the parameters to librosa\'s melspectrogram.')
+    parser.add_argument('-c' ,'--config', help='Path to json file that contains the parameters to librosa\'s melspectrogram function.')
     parser.add_argument('-o', '--output', help='Path to folder where to save tsv and json files, if missing uses current folder.')
     parser.add_argument('-t', '--start-time', help='Start time in seconds relative to first data sample.'
             ' Either a single float (same starting time for all runs) or a list of floats.', nargs='+', type=float, default=0.)
