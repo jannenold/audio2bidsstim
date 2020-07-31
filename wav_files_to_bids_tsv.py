@@ -1,7 +1,4 @@
-import matplotlib as mpl
-mpl.use('Agg')
 import numpy as np
-import matplotlib.pyplot as plt
 import joblib
 import glob
 import json
@@ -15,34 +12,31 @@ def your_own_feature_extractor(filename,  **kwargs):
     an ndarray of features of shape (samples, features), 
     the sampling rate of the features in Hz,
     names for the columns of each features
-    
-    INPUT:
-    filename : str, path to wav file to be converted
-    '''
-    wav, _ = lbr.load(filename, sr=sr)
-    melspecgrams = lbr.feature.melspectrogram(y=wav, sr=sr, hop_length=hop_length,
-                                              **kwargs)
-    if log:
-        melspecgrams[np.isclose(melspecgrams, 0)] = np.finfo(melspecgrams.dtype).eps
-        melspecgrams = np.log(melspecgrams)
-    log_dict = {True: 'Log ', False: ''}
-    freqs = lbr.core.mel_frequencies(
-            **{param: kwargs[param] for param in ['n_mels', 'fmin', 'fmax', 'htk']
-                if param in kwargs})
-    freqs = ['{0:.0f} Hz ({1}Mel)'.format(freq, log_dict[log]) for freq in freqs]
-    return melspecgrams.T, sr / hop_length, freqs
 
+    Parameters
+    ----------
+    filename : str, path to wav file to be converted
+
+    Returns
+    -------
+    '''
+    pass
 
 def get_mel_spectrogram(filename, log=True, sr=44100, hop_length=512, **kwargs):
     '''Returns the (log) Mel spectrogram of a given wav file, the sampling rate of that spectrogram and names of the frequencies in the Mel spectrogram
 
-    INPUT:
+    Parameters
+    ----------
     filename : str, path to wav file to be converted
     sr : int, sampling rate for wav file
          if this differs from actual sampling rate in wav it will be resampled
     log : bool, indicates if log mel spectrogram will be returned
     kwargs : additional keyword arguments that will be
              transferred to librosa's melspectrogram function
+
+    Returns
+    -------
+    a tuple consisting of the Melspectrogram of shape (time, mels), the repetition time in seconds, and the frequencies of the Mel filters in Hertz 
     '''
     wav, _ = lbr.load(filename, sr=sr)
     melspecgrams = lbr.feature.melspectrogram(y=wav, sr=sr, hop_length=hop_length,
