@@ -68,10 +68,12 @@ if __name__ == '__main__':
             config = json.load(fl)
     else:
         config = dict()
+    if isinstance(args.file, str):
+        args.file = [args.file]
     if len(args.file) == 1 and '*' in args.file[0]:
         args.file = glob.glob(args.file[0])
     if isinstance(args.start_time, float):
-        args.start_time = list(args.start_time)
+        args.start_time = [args.start_time]
     if len(args.start_time) > 1 and len(args.start_time) != len(args.file):
         raise ValueError('Number of files and number of start times are unequal. Start time has to be either one element or the same number as number of files.')
     for wav_file, start_time in zip(args.file, cycle(args.start_time)):
