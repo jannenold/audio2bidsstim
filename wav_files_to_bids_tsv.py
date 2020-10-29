@@ -19,6 +19,7 @@ def your_own_feature_extractor(filename,  **kwargs):
 
     Returns
     -------
+    tuple of a feature representation, the repetition time in seconds, and the names of all features
     '''
     pass
 
